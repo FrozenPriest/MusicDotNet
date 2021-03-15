@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain;
 using Domain.Contracts;
@@ -9,9 +8,9 @@ namespace DataAccess.Contracts
 {
     public interface ISongDataAccess
     {
+        Task<IEnumerable<Song>> GetAsync();
         Task<Song> GetAsync(ISongIdentity songId);
-        Task<IEnumerable<Song>> GetAsync(IAlbumIdentity albumId);
-        
+
         Task<Song> InsertAsync(SongUpdateModel song);
         Task<Song> UpdateAsync(SongUpdateModel song);
     }
