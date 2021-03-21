@@ -8,6 +8,6 @@ namespace BLL.Contracts
     public interface ISongGetService
     {
         Task<IEnumerable<Song>> GetAsync();
-        Task<Song> GetAsync(ISongIdentity employee);
+        Task<Song> GetAsync(ISongIdentity song);
     }
 }
