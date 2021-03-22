@@ -25,7 +25,7 @@ namespace DataAccess.Implementations
 
         public async Task<Song> InsertAsync(SongUpdateModel song)
         {
-            var result = await Context.AddAsync(Mapper.Map<Song>(song));
+            var result = await Context.AddAsync(Mapper.Map<DataAccess.Entities.Song>(song));
             await Context.SaveChangesAsync();
 
             return Mapper.Map<Song>(result.Entity);
@@ -34,7 +34,7 @@ namespace DataAccess.Implementations
         public async Task<IEnumerable<Song>> GetAsync()
         {
             return Mapper.Map<IEnumerable<Song>>(
-                await Context.Song.Include(x => x.Album).ToListAsync());
+                await Context.Song.Include(x => x.Album).ThenInclude(x => x.Artist).ToListAsync());
         }
 
         public async Task<Song> GetAsync(ISongIdentity songId)

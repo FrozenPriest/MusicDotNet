@@ -2,6 +2,6 @@
 {
     public interface IArtistIdentity
     {
-        int? ArtistId { get; }
+        int ArtistId { get; }
     }
 }

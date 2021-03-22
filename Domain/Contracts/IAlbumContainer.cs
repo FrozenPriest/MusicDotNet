@@ -2,7 +2,7 @@
 {
     public interface IAlbumContainer
     {
-        int? AlbumId { get; }
+        int AlbumId { get; }
         
     }
 }

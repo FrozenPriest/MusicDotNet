@@ -17,7 +17,7 @@ namespace DataAccess.Entities
         public string Name { get; set; }
         public string ImageUrl { get; set; }
         
-        public int? ArtistId { get; set; }
+        public int ArtistId { get; set; }
 
         public virtual Artist Artist { get; set; }
         

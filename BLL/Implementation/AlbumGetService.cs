@@ -22,7 +22,7 @@ namespace BLL.Implementation
 
             var album = await GetBy(albumContainer);
 
-            if (albumContainer.AlbumId.HasValue && album == null)
+            if (album == null)
             {
                 throw new InvalidOperationException($"Album with id {albumContainer.AlbumId} not found");
             }

@@ -10,6 +10,6 @@ namespace Domain
         public int Duration { get; set; }
         public Album Album { get; set; }
 
-        int? IAlbumContainer.AlbumId => this.Album.Id;
+        int IAlbumContainer.AlbumId => this.Album.Id;
     }
 }

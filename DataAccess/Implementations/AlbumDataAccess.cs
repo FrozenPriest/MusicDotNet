@@ -22,9 +22,8 @@ namespace DataAccess.Implementations
 
         public async Task<Album> GetByAsync(IAlbumContainer album)
         {
-            return album.AlbumId.HasValue
-                ? Mapper.Map<Album>(await Context.Album.FirstOrDefaultAsync(x => x.Id == album.AlbumId))
-                : null;
+            return Mapper.Map<Album>(await Context.Album.Include(x => x.Artist).FirstOrDefaultAsync(x => x.Id == album.AlbumId));
+
         }
     }
 }

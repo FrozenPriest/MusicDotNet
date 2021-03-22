@@ -32,7 +32,7 @@ namespace WebApi.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ArtistId")
+                    b.Property<int>("ArtistId")
                         .HasColumnType("integer");
 
                     b.Property<string>("ImageUrl")
@@ -81,7 +81,7 @@ namespace WebApi.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AlbumId")
+                    b.Property<int>("AlbumId")
                         .HasColumnType("integer");
 
                     b.Property<int>("Duration")

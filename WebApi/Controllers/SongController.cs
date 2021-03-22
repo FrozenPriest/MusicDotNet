@@ -65,7 +65,7 @@ namespace WebApi.Controllers
         [Route("{songId}")]
         public async Task<SongDTO> GetAsync(int songId)
         {
-            this.Logger.LogTrace($"{nameof(this.GetAsync)} called for {songId}");
+            this.Logger.LogTrace($"GetAsync called for {songId}");
 
             return this.Mapper.Map<SongDTO>(await this.SongGetService.GetAsync(new SongIdentityModel(songId)));
         }

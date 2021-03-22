@@ -2,6 +2,6 @@
 {
     public interface ISongIdentity
     {
-        int? Id { get; }
+        int Id { get; }
     }
 }

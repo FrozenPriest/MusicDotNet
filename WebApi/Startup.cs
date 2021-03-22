@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using BLL.Contracts;
 using BLL.Implementation;
 using DataAccess.Context;
@@ -9,13 +6,10 @@ using DataAccess.Contracts;
 using DataAccess.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace WebApi
@@ -36,13 +30,20 @@ namespace WebApi
             services.AddAutoMapper(typeof(Startup));
 
             //BLL
+            //song
             services.Add(new ServiceDescriptor(typeof(ISongCreateService), typeof(SongCreateService),
                 ServiceLifetime.Scoped));
             services.Add(new ServiceDescriptor(typeof(ISongGetService), typeof(SongGetService),
                 ServiceLifetime.Scoped));
             services.Add(new ServiceDescriptor(typeof(ISongUpdateService), typeof(SongUpdateService),
                 ServiceLifetime.Scoped));
-            services.Add(new ServiceDescriptor(typeof(IAlbumGetService), typeof(AlbumGetService), ServiceLifetime.Scoped));
+            //album
+            services.Add(new ServiceDescriptor(typeof(IAlbumGetService), typeof(AlbumGetService),
+                ServiceLifetime.Scoped));
+            
+            //artist
+            services.Add(new ServiceDescriptor(typeof(IArtistGetService), typeof(ArtistGetService),
+                ServiceLifetime.Scoped));
             //todo more
 
             //DataAccess
@@ -55,8 +56,9 @@ namespace WebApi
 
             // DB Contexts
             services.AddDbContext<SongDirectoryContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("SongDirectory"), b => b.MigrationsAssembly("WebApi")));
-            
+                options.UseNpgsql(Configuration.GetConnectionString("SongDirectory"),
+                    b => b.MigrationsAssembly("WebApi")));
+
             //swagger
             services.AddSwaggerGen(c =>
             {
@@ -100,11 +102,7 @@ namespace WebApi
             app.UseSwagger();
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
-            
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
         }
     }
 }

@@ -21,9 +21,7 @@ namespace DataAccess.Implementations
 
         public async Task<Artist> GetByAsync(IArtistIdentity artist)
         {
-            return artist.ArtistId.HasValue
-                ? Mapper.Map<Artist>(await Context.Artist.FirstOrDefaultAsync(x => x.Id == artist.ArtistId))
-                : null;
+            return Mapper.Map<Artist>(await Context.Artist.FirstOrDefaultAsync(x => x.Id == artist.ArtistId));
         }
     }
 }
