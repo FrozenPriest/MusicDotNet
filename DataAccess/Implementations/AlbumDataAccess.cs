@@ -25,14 +25,14 @@ namespace DataAccess.Implementations
 
         public async Task<Album> GetByAsync(IAlbumContainer album)
         {
-            return Mapper.Map<Album>(await Context.Album.Include(x => x.Artist)
+            return Mapper.Map<Album>(await Context.Album.Include(x =>x.Song).Include(x => x.Artist)
                 .FirstOrDefaultAsync(x => x.Id == album.AlbumId));
         }
 
         public async Task<IEnumerable<Album>> GetAsync()
         {
             return Mapper.Map<IEnumerable<Album>>(
-                await Context.Album.Include(x => x.Artist).ToListAsync());
+                await Context.Album.Include(x =>x.Song).Include(x => x.Artist).ToListAsync());
         }
 
         public async Task<Album> InsertAsync(AlbumUpdateModel album)
