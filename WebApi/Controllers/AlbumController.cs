@@ -29,7 +29,7 @@ namespace WebApi.Controllers
             this.AlbumUpdateService = albumUpdateService;
             this.Mapper = mapper;
         }
-/*
+
         [HttpPut]
         [Route("")]
         public async Task<AlbumDTO> PutAsync(AlbumCreateDTO album)
@@ -51,7 +51,7 @@ namespace WebApi.Controllers
 
             return this.Mapper.Map<AlbumDTO>(result);
         }
-*/
+
         [HttpGet]
         [Route("")]
         public async Task<IEnumerable<AlbumDTO>> GetAsync()

@@ -8,6 +8,6 @@ namespace Client.Requests.Create
         public string Name { get; set; }
         public string ImageUrl { get; set; }
         [Required(ErrorMessage = "Artist id is required")]
-        public int ArtistId;
+        public int ArtistId { get; set; }
     }
 }
