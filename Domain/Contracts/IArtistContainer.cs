@@ -1,6 +1,6 @@
 ﻿namespace Domain.Contracts
 {
-    public interface IArtistIdentity
+    public interface IArtistContainer
     {
         int ArtistId { get; }
     }

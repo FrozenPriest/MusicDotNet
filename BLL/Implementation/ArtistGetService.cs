@@ -17,22 +17,22 @@ namespace BLL.Implementation
             ArtistDataAccess = artistDataAccess;
         }
         
-        public async Task ValidateAsync(IArtistIdentity artistIdentity)
+        public async Task ValidateAsync(IArtistContainer artistContainer)
         {
-            if (artistIdentity == null) throw new ArgumentNullException(nameof(artistIdentity));
+            if (artistContainer == null) throw new ArgumentNullException(nameof(artistContainer));
 
-            var album = await GetBy(artistIdentity);
+            var album = await GetBy(artistContainer);
 
             if (album == null)
             {
-                throw new InvalidOperationException($"Album with id {artistIdentity.ArtistId} not found");
+                throw new InvalidOperationException($"Album with id {artistContainer.ArtistId} not found");
             }
             
         }
 
-        private async Task<Artist> GetBy(IArtistIdentity artistIdentity)
+        private async Task<Artist> GetBy(IArtistContainer artistContainer)
         {
-            return await ArtistDataAccess.GetByAsync(artistIdentity);
+            return await ArtistDataAccess.GetByAsync(artistContainer);
         }
     }
 }

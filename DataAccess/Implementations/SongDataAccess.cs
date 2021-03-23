@@ -37,9 +37,9 @@ namespace DataAccess.Implementations
                 await Context.Song.Include(x => x.Album).ThenInclude(x => x.Artist).ToListAsync());
         }
 
-        public async Task<Song> GetAsync(ISongIdentity songId)
+        public async Task<Song> GetAsync(ISongIdentity id)
         {
-            var result = await Get(songId);
+            var result = await Get(id);
             return Mapper.Map<Song>(result);
         }
 

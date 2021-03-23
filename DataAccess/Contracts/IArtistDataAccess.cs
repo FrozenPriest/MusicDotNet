@@ -6,6 +6,6 @@ namespace DataAccess.Contracts
 {
     public interface IArtistDataAccess
     {
-        Task<Artist> GetByAsync(IArtistIdentity artist);
+        Task<Artist> GetByAsync(IArtistContainer artist);
     }
 }

@@ -38,8 +38,13 @@ namespace WebApi
             services.Add(new ServiceDescriptor(typeof(ISongUpdateService), typeof(SongUpdateService),
                 ServiceLifetime.Scoped));
             //album
+            services.Add(new ServiceDescriptor(typeof(IAlbumCreateService), typeof(AlbumCreateService),
+                ServiceLifetime.Scoped));
             services.Add(new ServiceDescriptor(typeof(IAlbumGetService), typeof(AlbumGetService),
                 ServiceLifetime.Scoped));
+            services.Add(new ServiceDescriptor(typeof(IAlbumUpdateService), typeof(AlbumUpdateService),
+                ServiceLifetime.Scoped));
+            
             
             //artist
             services.Add(new ServiceDescriptor(typeof(IArtistGetService), typeof(ArtistGetService),

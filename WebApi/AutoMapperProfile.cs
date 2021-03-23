@@ -6,7 +6,7 @@ using Domain.Models;
 
 namespace WebApi
 {
-    public class AutoMapperProfile: Profile
+    public class AutoMapperProfile : Profile
     {
         public AutoMapperProfile()
         {
@@ -20,8 +20,13 @@ namespace WebApi
 
             CreateMap<SongCreateDTO, SongUpdateModel>();
             CreateMap<SongUpdateDTO, SongUpdateModel>();
-            
+            CreateMap<AlbumCreateDTO, AlbumUpdateModel>();
+            CreateMap<AlbumUpdateDTO, AlbumUpdateModel>();
+
+
             CreateMap<SongUpdateModel, DataAccess.Entities.Song>();
+            CreateMap<AlbumUpdateModel, DataAccess.Entities.Album>();
+
         }
     }
 }

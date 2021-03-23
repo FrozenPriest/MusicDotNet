@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BLL.Contracts;
 using DataAccess.Contracts;
@@ -20,7 +21,7 @@ namespace BLL.Implementation
         {
             if (albumContainer == null) throw new ArgumentNullException(nameof(albumContainer));
 
-            var album = await GetBy(albumContainer);
+            var album = await GetAsync(albumContainer);
 
             if (album == null)
             {
@@ -29,9 +30,14 @@ namespace BLL.Implementation
             
         }
 
-        private async Task<Album> GetBy(IAlbumContainer albumContainer)
+        public async Task<Album> GetAsync(IAlbumContainer albumContainer)
         {
             return await AlbumDataAccess.GetByAsync(albumContainer);
+        }
+
+        public Task<IEnumerable<Album>> GetAsync()
+        {
+            return AlbumDataAccess.GetAsync();
         }
     }
 }

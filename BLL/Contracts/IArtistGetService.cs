@@ -5,7 +5,7 @@ namespace BLL.Contracts
 {
     public interface IArtistGetService
     {
-        Task ValidateAsync(IArtistIdentity artistIdentity);
+        Task ValidateAsync(IArtistContainer artistContainer);
 
     }
 }
