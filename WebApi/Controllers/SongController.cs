@@ -12,8 +12,8 @@ using Microsoft.Extensions.Logging;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class SongController:ControllerBase
+    [Route("api/v1/[controller]")]
+    public class SongController : ControllerBase
     {
         private ILogger<SongController> Logger { get; }
         private ISongCreateService SongCreateService { get; }
@@ -21,7 +21,8 @@ namespace WebApi.Controllers
         private ISongUpdateService SongUpdateService { get; }
         private IMapper Mapper { get; }
 
-        public SongController(ILogger<SongController> logger, IMapper mapper, ISongCreateService songCreateService, ISongGetService songGetService, ISongUpdateService songUpdateService)
+        public SongController(ILogger<SongController> logger, IMapper mapper, ISongCreateService songCreateService,
+            ISongGetService songGetService, ISongUpdateService songUpdateService)
         {
             this.Logger = logger;
             this.SongCreateService = songCreateService;

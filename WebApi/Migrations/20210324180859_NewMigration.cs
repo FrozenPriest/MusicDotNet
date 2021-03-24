@@ -2,14 +2,16 @@
 
 namespace WebApi.Migrations
 {
-    public partial class third : Migration
+    public partial class NewMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+
         }
     }
 }

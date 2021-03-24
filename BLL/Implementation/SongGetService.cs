@@ -7,9 +7,10 @@ using Domain.Contracts;
 
 namespace BLL.Implementation
 {
-    public class SongGetService: ISongGetService
+    public class SongGetService : ISongGetService
     {
         private ISongDataAccess SongDataAccess { get; }
+
         public SongGetService(ISongDataAccess songDataAccess)
         {
             SongDataAccess = songDataAccess;

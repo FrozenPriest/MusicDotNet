@@ -2,7 +2,7 @@
 
 namespace Domain.Models
 {
-    public class AlbumIdentityModel:IAlbumContainer
+    public class AlbumIdentityModel : IAlbumContainer
     {
         public AlbumIdentityModel(int albumId)
         {

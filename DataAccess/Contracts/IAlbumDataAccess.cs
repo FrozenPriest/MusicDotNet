@@ -9,7 +9,7 @@ namespace DataAccess.Contracts
     public interface IAlbumDataAccess
     {
         Task<Album> GetByAsync(IAlbumContainer album);
-        Task<IEnumerable<Album>>  GetAsync();
+        Task<IEnumerable<Album>> GetAsync();
 
         Task<Album> InsertAsync(AlbumUpdateModel album);
         Task<Album> UpdateAsync(AlbumUpdateModel album);

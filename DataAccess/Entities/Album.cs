@@ -14,13 +14,14 @@ namespace DataAccess.Entities
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         public string Name { get; set; }
         public string ImageUrl { get; set; }
-        
+
         public int ArtistId { get; set; }
 
         public virtual Artist Artist { get; set; }
-        
+
         public virtual ICollection<Song> Song { get; set; }
     }
 }

@@ -3,6 +3,5 @@
     public interface IAlbumContainer
     {
         int AlbumId { get; }
-        
     }
 }

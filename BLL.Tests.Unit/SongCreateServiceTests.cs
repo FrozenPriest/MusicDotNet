@@ -14,7 +14,7 @@ namespace BLL.Tests.Unit
 {
     public class SongCreateServiceTests
     {
-       [Test]
+        [Test]
         public async Task CreateAsyncSuccessful()
         {
             var song = new SongUpdateModel();
@@ -32,7 +32,7 @@ namespace BLL.Tests.Unit
 
             result.Should().Be(expected);
         }
-        
+
         [Test]
         public async Task CreateAsyncFailed()
         {

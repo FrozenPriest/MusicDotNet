@@ -2,7 +2,7 @@
 
 namespace Domain.Models
 {
-    public class SongIdentityModel: ISongIdentity
+    public class SongIdentityModel : ISongIdentity
     {
         public SongIdentityModel(int id)
         {

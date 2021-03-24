@@ -12,8 +12,8 @@ using Microsoft.Extensions.Logging;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class AlbumController:ControllerBase
+    [Route("api/v1/[controller]")]
+    public class AlbumController : ControllerBase
     {
         private ILogger<AlbumController> Logger { get; }
         private IAlbumCreateService AlbumCreateService { get; }
@@ -21,7 +21,8 @@ namespace WebApi.Controllers
         private IAlbumUpdateService AlbumUpdateService { get; }
         private IMapper Mapper { get; }
 
-        public AlbumController(ILogger<AlbumController> logger, IMapper mapper, IAlbumCreateService albumCreateService, IAlbumGetService albumGetService, IAlbumUpdateService albumUpdateService)
+        public AlbumController(ILogger<AlbumController> logger, IMapper mapper, IAlbumCreateService albumCreateService,
+            IAlbumGetService albumGetService, IAlbumUpdateService albumUpdateService)
         {
             this.Logger = logger;
             this.AlbumCreateService = albumCreateService;

@@ -3,7 +3,7 @@ using Domain.Contracts;
 
 namespace Domain
 {
-    public class Song: IAlbumContainer
+    public class Song : IAlbumContainer
     {
         public int Id { get; set; }
         public string Name { get; set; }

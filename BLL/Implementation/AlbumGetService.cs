@@ -27,7 +27,6 @@ namespace BLL.Implementation
             {
                 throw new InvalidOperationException($"Album with id {albumContainer.AlbumId} not found");
             }
-            
         }
 
         public async Task<Album> GetAsync(IAlbumContainer albumContainer)
@@ -35,9 +34,9 @@ namespace BLL.Implementation
             return await AlbumDataAccess.GetByAsync(albumContainer);
         }
 
-        public Task<IEnumerable<Album>> GetAsync()
+        public async Task<IEnumerable<Album>> GetAsync()
         {
-            return AlbumDataAccess.GetAsync();
+            return await AlbumDataAccess.GetAsync();
         }
     }
 }

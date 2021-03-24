@@ -1,11 +1,11 @@
-﻿namespace Client.DTO.Read
+﻿using Domain.Contracts;
+
+namespace Domain.Models
 {
-    public class ArtistDTO
+    public class ArtistUpdateModel : ISongIdentity
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string ImageUrl { get; set; }
-        
-        
     }
 }

@@ -36,7 +36,7 @@ namespace DataAccess.Context
                     .HasForeignKey(song => song.AlbumId)
                     .HasConstraintName("FK_SONG_ALBUM");
             });
-            
+
             modelBuilder.Entity<Album>(entity =>
             {
                 entity.Property(e => e.Id).UseIdentityColumn();
@@ -47,7 +47,7 @@ namespace DataAccess.Context
                     .HasForeignKey(album => album.ArtistId)
                     .HasConstraintName("FK_ALBUM_ARTIST");
             });
-            
+
             modelBuilder.Entity<Artist>(entity =>
             {
                 entity.Property(e => e.Id).UseIdentityColumn();

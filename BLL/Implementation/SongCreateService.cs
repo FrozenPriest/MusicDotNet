@@ -6,7 +6,7 @@ using Domain.Models;
 
 namespace BLL.Implementation
 {
-    public class SongCreateService: ISongCreateService
+    public class SongCreateService : ISongCreateService
     {
         private ISongDataAccess SongDataAccess { get; }
         private IAlbumGetService AlbumGetService { get; }

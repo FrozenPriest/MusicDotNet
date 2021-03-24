@@ -44,11 +44,16 @@ namespace WebApi
                 ServiceLifetime.Scoped));
             services.Add(new ServiceDescriptor(typeof(IAlbumUpdateService), typeof(AlbumUpdateService),
                 ServiceLifetime.Scoped));
-            
-            
+
+
             //artist
+            services.Add(new ServiceDescriptor(typeof(IArtistCreateService), typeof(ArtistCreateService),
+                ServiceLifetime.Scoped));
             services.Add(new ServiceDescriptor(typeof(IArtistGetService), typeof(ArtistGetService),
                 ServiceLifetime.Scoped));
+            services.Add(new ServiceDescriptor(typeof(IArtistUpdateService), typeof(ArtistUpdateService),
+                ServiceLifetime.Scoped));
+            
             //todo more
 
             //DataAccess
@@ -86,7 +91,7 @@ namespace WebApi
                     }
                 });
             });
-            
+
             //json
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
