@@ -50,7 +50,7 @@ namespace DataAccess.Implementations
             await Context.SaveChangesAsync();
             return Mapper.Map<Artist>(result);
         }
-        
+
         private async Task<object> Get(ISongIdentity artist)
         {
             if (artist == null)

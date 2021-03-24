@@ -29,7 +29,6 @@ namespace WebApi
             CreateMap<SongUpdateModel, DataAccess.Entities.Song>();
             CreateMap<AlbumUpdateModel, DataAccess.Entities.Album>();
             CreateMap<ArtistUpdateModel, DataAccess.Entities.Artist>();
-
         }
     }
 }

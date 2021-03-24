@@ -8,7 +8,7 @@ namespace BLL.Contracts
     public interface IArtistGetService
     {
         Task ValidateAsync(IArtistContainer artistContainer);
-        
+
         Task<Artist> GetAsync(IArtistContainer artistContainer);
         Task<IEnumerable<Artist>> GetAsync();
     }

@@ -8,7 +8,7 @@ namespace BLL.Implementation
 {
     public class ArtistCreateService : IArtistCreateService
     {
-        private IArtistDataAccess ArtistDataAccess  { get; }
+        private IArtistDataAccess ArtistDataAccess { get; }
 
         public ArtistCreateService(IArtistDataAccess artistDataAccess)
         {

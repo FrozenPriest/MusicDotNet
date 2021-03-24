@@ -6,7 +6,7 @@ using Domain.Contracts;
 
 namespace BLL.Implementation
 {
-    public class SongDeleteService:ISongDeleteService
+    public class SongDeleteService : ISongDeleteService
     {
         private ISongDataAccess SongDataAccess { get; }
 

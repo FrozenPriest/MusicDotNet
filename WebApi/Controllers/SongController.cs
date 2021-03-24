@@ -79,7 +79,7 @@ namespace WebApi.Controllers
         public async Task DeleteAsync(int songId)
         {
             this.Logger.LogTrace($"DeleteAsync called for {songId}");
-            
+
             await this.SongDeleteService.DeleteAsync(new SongIdentityModel(songId));
         }
     }

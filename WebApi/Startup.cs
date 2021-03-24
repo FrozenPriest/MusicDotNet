@@ -55,7 +55,7 @@ namespace WebApi
                 ServiceLifetime.Scoped));
             services.Add(new ServiceDescriptor(typeof(IArtistUpdateService), typeof(ArtistUpdateService),
                 ServiceLifetime.Scoped));
-            
+
             //todo more
 
             //DataAccess

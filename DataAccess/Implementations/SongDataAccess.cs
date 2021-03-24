@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess.Context;
@@ -33,8 +35,9 @@ namespace DataAccess.Implementations
 
         public async Task<IEnumerable<Song>> GetAsync()
         {
-            return Mapper.Map<IEnumerable<Song>>(
-                await Context.Song.Include(x => x.Album).ThenInclude(x => x.Artist).ToListAsync());
+            var result = await Context.Song.IgnoreAutoIncludes().Include(x => x.Album).ThenInclude(x => x.Artist)
+                .ToListAsync();
+            return Mapper.Map<IEnumerable<Song>>(result);
         }
 
         public async Task<Song> GetAsync(ISongIdentity id)
@@ -50,7 +53,7 @@ namespace DataAccess.Implementations
                 throw new ArgumentNullException(nameof(song));
             }
 
-            return await Context.Song.Include(x => x.Album)
+            return await Context.Song.IgnoreAutoIncludes().Include(x => x.Album).ThenInclude(x => x.Artist)
                 .FirstOrDefaultAsync(x => x.Id == song.Id);
         }
 

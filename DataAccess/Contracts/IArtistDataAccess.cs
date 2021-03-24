@@ -10,7 +10,7 @@ namespace DataAccess.Contracts
     {
         Task<Artist> GetByAsync(IArtistContainer artist);
         Task<IEnumerable<Artist>> GetAsync();
-        
+
         Task<Artist> InsertAsync(ArtistUpdateModel artist);
         Task<Artist> UpdateAsync(ArtistUpdateModel artist);
     }
