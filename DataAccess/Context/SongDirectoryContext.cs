@@ -12,6 +12,7 @@ namespace DataAccess.Context
         public SongDirectoryContext(DbContextOptions<SongDirectoryContext> options)
             : base(options)
         {
+            
         }
 
         public virtual DbSet<Song> Song { get; set; }
@@ -20,6 +21,7 @@ namespace DataAccess.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

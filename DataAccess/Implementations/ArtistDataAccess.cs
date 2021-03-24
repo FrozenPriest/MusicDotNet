@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.Internal;
 using DataAccess.Context;
 using DataAccess.Contracts;
 using Domain;
@@ -24,14 +26,25 @@ namespace DataAccess.Implementations
 
         public async Task<Artist> GetByAsync(IArtistContainer artist)
         {
-            return Mapper.Map<Artist>(await Context.Artist
+            var result = Mapper.Map<Artist>(await Context.Artist.IgnoreAutoIncludes()
+                .Include(x => x.Album)
+                .ThenInclude(x => x.Song)
                 .FirstOrDefaultAsync(x => x.Id == artist.ArtistId));
+            result.Album.ForAll(x => x.Artist = null);
+            return result;
         }
 
         public async Task<IEnumerable<Artist>> GetAsync()
         {
-            return Mapper.Map<IEnumerable<Artist>>(
-                await Context.Artist.ToListAsync());
+            var result =
+                Mapper.Map<IEnumerable<Artist>>(await Context.Artist
+                    .Include(x => x.Album)
+                    .ThenInclude(x => x.Song)
+                    .ToListAsync());
+
+            var enumerable = result.ToList();
+            enumerable.SelectMany(artist => artist.Album).ForAll(album => album.Artist = null);
+            return enumerable;
         }
 
         public async Task<Artist> InsertAsync(ArtistUpdateModel artist)

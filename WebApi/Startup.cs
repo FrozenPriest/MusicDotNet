@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 
 namespace WebApi
 {
@@ -69,7 +70,12 @@ namespace WebApi
             // DB Contexts
             services.AddDbContext<SongDirectoryContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("SongDirectory"),
-                    b => b.MigrationsAssembly("WebApi")));
+                    b =>
+                {
+                    b.MigrationsAssembly("WebApi");
+                    b.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                }
+            ));
 
             //swagger
             services.AddSwaggerGen(c =>
@@ -96,7 +102,10 @@ namespace WebApi
 
             //json
             services.AddControllers().AddNewtonsoftJson(options =>
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                }
             );
         }
 
