@@ -19,15 +19,18 @@ namespace WebApi.Controllers
         private ISongCreateService SongCreateService { get; }
         private ISongGetService SongGetService { get; }
         private ISongUpdateService SongUpdateService { get; }
+        private ISongDeleteService SongDeleteService { get; }
+
         private IMapper Mapper { get; }
 
         public SongController(ILogger<SongController> logger, IMapper mapper, ISongCreateService songCreateService,
-            ISongGetService songGetService, ISongUpdateService songUpdateService)
+            ISongGetService songGetService, ISongUpdateService songUpdateService, ISongDeleteService songDeleteService)
         {
             this.Logger = logger;
             this.SongCreateService = songCreateService;
             this.SongGetService = songGetService;
             this.SongUpdateService = songUpdateService;
+            this.SongDeleteService = songDeleteService;
             this.Mapper = mapper;
         }
 
@@ -69,6 +72,15 @@ namespace WebApi.Controllers
             this.Logger.LogTrace($"GetAsync called for {songId}");
 
             return this.Mapper.Map<SongDTO>(await this.SongGetService.GetAsync(new SongIdentityModel(songId)));
+        }
+
+        [HttpDelete]
+        [Route("{songId}")]
+        public async Task DeleteAsync(int songId)
+        {
+            this.Logger.LogTrace($"DeleteAsync called for {songId}");
+            
+            await this.SongDeleteService.DeleteAsync(new SongIdentityModel(songId));
         }
     }
 }

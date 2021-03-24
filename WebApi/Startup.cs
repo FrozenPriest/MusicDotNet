@@ -37,6 +37,8 @@ namespace WebApi
                 ServiceLifetime.Scoped));
             services.Add(new ServiceDescriptor(typeof(ISongUpdateService), typeof(SongUpdateService),
                 ServiceLifetime.Scoped));
+            services.Add(new ServiceDescriptor(typeof(ISongDeleteService), typeof(SongDeleteService),
+                ServiceLifetime.Scoped));
             //album
             services.Add(new ServiceDescriptor(typeof(IAlbumCreateService), typeof(AlbumCreateService),
                 ServiceLifetime.Scoped));

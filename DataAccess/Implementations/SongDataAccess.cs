@@ -63,5 +63,13 @@ namespace DataAccess.Implementations
             await Context.SaveChangesAsync();
             return Mapper.Map<Song>(result);
         }
+
+        public async Task DeleteAsync(ISongIdentity id)
+        {
+            var song = await Context.Song.Include(x => x.Album)
+                .FirstOrDefaultAsync(x => x.Id == id.Id);
+            Context.Song.Remove(song);
+            await Context.SaveChangesAsync();
+        }
     }
 }

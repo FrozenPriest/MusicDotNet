@@ -13,5 +13,7 @@ namespace DataAccess.Contracts
 
         Task<Song> InsertAsync(SongUpdateModel song);
         Task<Song> UpdateAsync(SongUpdateModel song);
+
+        Task DeleteAsync(ISongIdentity id);
     }
 }
