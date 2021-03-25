@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL.Tests.Unit", "BLL.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{F13D66F5-1A0D-4AA0-8C9E-2B43DB53608B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorWebApplication", "RazorWebApplication\RazorWebApplication.csproj", "{2EA12509-7465-4C18-BB09-161DF27A888F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{F13D66F5-1A0D-4AA0-8C9E-2B43DB53608B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F13D66F5-1A0D-4AA0-8C9E-2B43DB53608B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F13D66F5-1A0D-4AA0-8C9E-2B43DB53608B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EA12509-7465-4C18-BB09-161DF27A888F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EA12509-7465-4C18-BB09-161DF27A888F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EA12509-7465-4C18-BB09-161DF27A888F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EA12509-7465-4C18-BB09-161DF27A888F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
