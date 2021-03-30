@@ -64,7 +64,7 @@ namespace DataAccess.Implementations
         }
 
 
-        private async Task<object> Get(ISongIdentity album)
+        private async Task<object> Get(IAlbumIdentity album)
         {
             if (album == null)
             {

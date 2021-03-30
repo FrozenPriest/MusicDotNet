@@ -64,7 +64,7 @@ namespace DataAccess.Implementations
             return Mapper.Map<Artist>(result);
         }
 
-        private async Task<object> Get(ISongIdentity artist)
+        private async Task<object> Get(IArtistIdentity artist)
         {
             if (artist == null)
             {

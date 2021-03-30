@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using Domain.Contracts;
 
 namespace Domain
 {
-    public class Artist
+    public class Artist: IArtistIdentity
     {
         public int Id { get; set; }
         public string Name { get; set; }

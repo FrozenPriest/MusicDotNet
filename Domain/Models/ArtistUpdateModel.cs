@@ -2,7 +2,7 @@
 
 namespace Domain.Models
 {
-    public class ArtistUpdateModel : ISongIdentity
+    public class ArtistUpdateModel : IArtistIdentity
     {
         public int Id { get; set; }
         public string Name { get; set; }
