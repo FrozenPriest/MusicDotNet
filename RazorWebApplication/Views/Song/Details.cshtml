@@ -1,0 +1,42 @@
+﻿@model RazorWebApplication.Models.SongModel
+
+@{
+    ViewBag.Title = $"Info for album {this.Model.Name}";
+    Layout = "_layout";
+}
+
+<h3>Song: @this.Model.Name</h3>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <b>Name</b>
+        </div>
+        <div class="col">
+            <b>Artist</b>
+        </div>
+        <div class="col">
+            <b>Album</b>
+        </div>
+
+        <div class="col">
+            <b>Duration</b>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col">
+            @this.Model.Name
+        </div>
+        <div class="col">
+            @Html.ActionLink(this.Model.Album.Artist.Name, "Details", "Artist", new {modelId = this.Model.Album.Artist.Id}, null)
+        </div>
+        <div class="col">
+            @Html.ActionLink(this.Model.Album.Name, "Details", "Album", new {modelId = this.Model.Album.Id}, null)
+        </div>
+        <div class="col">
+            @this.Model.Duration
+        </div>
+    </div>
+
+    <input action="action" onclick="window.history.go(-1); return false;" type="button" value="Back"/>
+</div>

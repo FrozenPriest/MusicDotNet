@@ -24,7 +24,9 @@
             <a href="@this.Model.ImageUrl">@this.Model.ImageUrl</a>
         </div>
     </div>
-    <div><b>Albums:</b></div>
+    <div>
+        <b>Albums:</b>
+    </div>
     @if (this.Model.Album.Count() != 0)
     {
         <div class="container" style="outline: solid">
@@ -40,7 +42,8 @@
             {
                 <div class="row">
                     <div class="col">
-                        @albumModel.Name
+                        @Html.ActionLink(albumModel.Name, "Details", "Album", new {modelId = albumModel.Id}, null)
+
                     </div>
                     <div class="col">
                         <a href="@albumModel.ImageUrl">@albumModel.ImageUrl</a>
@@ -62,7 +65,7 @@
                         {
                             <div class="row">
                                 <div class="col">
-                                    @songModel.Name
+                                    @Html.ActionLink(songModel.Name, "Details", "Song", new {modelId = songModel.Id}, null)
                                 </div>
                                 <div class="col">
                                     @songModel.Duration
@@ -78,5 +81,5 @@
     {
         <div>No albums!</div>
     }
-    @Html.ActionLink("Back to list", "Index")
+    <input action="action" onclick="window.history.go(-1); return false;" type="button" value="Back" />
 </div>

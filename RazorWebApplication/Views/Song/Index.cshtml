@@ -1,0 +1,42 @@
+﻿@model IEnumerable<RazorWebApplication.Models.SongModel>
+
+@{
+    ViewBag.Title = "All songs";
+    Layout = "_Layout";
+}
+
+<h2>Songs:</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <b>Name</b>
+        </div>
+        <div class="col">
+            <b>Artist</b>
+        </div>
+        <div class="col">
+            <b>Album</b>
+        </div>
+        <div class="col">
+            <b>Duration</b>
+        </div>
+    </div>
+    @foreach (var songModel in this.Model)
+    {
+        <div class="row">
+            <div class="col">
+                @Html.ActionLink(songModel.Name, "Details", new {modelId = songModel.Id}, null)
+            </div>
+            <div class="col">
+                @Html.ActionLink(songModel.Album.Artist.Name, "Details", "Artist", new {modelId = songModel.Album.Artist.Id}, null)
+            </div>
+            <div class="col">
+                @Html.ActionLink(songModel.Album.Name, "Details", "Album", new {modelId = songModel.Album.Id}, null)
+            </div>
+            <div class="col">
+                @songModel.Duration
+            </div>
+        </div>
+    }
+</div>
