@@ -13,7 +13,7 @@ namespace RazorWebApplication.Models
         public string Name { get; set; }
         public string ImageUrl { get; set; }
 
-        public ArtistModel Artist;
+        public ArtistModel Artist { get; set; }
 
         public IEnumerable<SongModel> Song { get; set; }
     }

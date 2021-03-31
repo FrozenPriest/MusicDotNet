@@ -27,6 +27,7 @@ namespace RazorWebApplication
             services.AddRazorPages();
             services.AddControllersWithViews();
             services.AddHttpClient<IArtistService, ArtistService>(client => client.BaseAddress = new Uri(this.Configuration.GetSection("ApiOptions")["Url"]));
+            services.AddHttpClient<IAlbumService, AlbumService>(client => client.BaseAddress = new Uri(this.Configuration.GetSection("ApiOptions")["Url"]));
 
         }
 

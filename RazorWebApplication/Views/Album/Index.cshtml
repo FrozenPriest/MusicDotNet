@@ -1,0 +1,36 @@
+﻿@model IEnumerable<RazorWebApplication.Models.AlbumModel>
+
+@{
+    ViewBag.Title = "All albums";
+    Layout = "_Layout";
+}
+
+<h2>Albums:</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <b>Name</b>
+        </div>
+        <div class="col">
+            <b>Artist</b>
+        </div>
+        <div class="col">
+            <b>Image url</b>
+        </div>
+    </div>
+    @foreach (var albumModel in this.Model)
+    {
+        <div class="row">
+            <div class="col">
+                @Html.ActionLink(albumModel.Name, "Details", new {modelId = albumModel.Id}, null)
+            </div>
+            <div class="col">
+                @Html.ActionLink(albumModel.Artist.Name, "Details", "Artist", new {modelId = albumModel.Artist.Id}, null)
+            </div>
+            <div class="col">
+                <a href="@albumModel.ImageUrl">@albumModel.ImageUrl</a>
+            </div>
+        </div>
+    }
+</div>
