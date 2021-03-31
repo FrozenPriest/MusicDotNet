@@ -1,0 +1,82 @@
+﻿@model RazorWebApplication.Models.ArtistModel
+
+@{
+    ViewBag.Title = $"Info for artist {this.Model.Name}";
+    Layout = "_layout";
+}
+
+<h3>Artist: @this.Model.Name</h3>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <b>Name</b>
+        </div>
+        <div class="col">
+            <b>Image url</b>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col">
+            @this.Model.Name
+        </div>
+        <div class="col">
+            <a href="@this.Model.ImageUrl">@this.Model.ImageUrl</a>
+        </div>
+    </div>
+    <div>Albums:</div>
+    @if (this.Model.Album.Count() != 0)
+    {
+        <div class="container" style="outline: solid">
+            <div class="row">
+                <div class="col">
+                    <b>Album</b>
+                </div>
+                <div class="col">
+                    <b>Poster link</b>
+                </div>
+            </div>
+            @foreach (var albumModel in this.Model.Album)
+            {
+                <div class="row">
+                    <div class="col">
+                        @albumModel.Name
+                    </div>
+                    <div class="col">
+                        <a href="@albumModel.ImageUrl">@albumModel.ImageUrl</a>
+                    </div>
+                </div>
+                @if (albumModel.Song.Count() != 0)
+                {
+                    <div>Songs:</div>
+                    <div class="container" style="outline: solid">
+                        <div class="row">
+                            <div class="col">
+                                <b>Song</b>
+                            </div>
+                            <div class="col">
+                                <b>Duration</b>
+                            </div>
+                        </div>
+                        @foreach (var songModel in albumModel.Song)
+                        {
+                            <div class="row">
+                                <div class="col">
+                                    @songModel.Name
+                                </div>
+                                <div class="col">
+                                    @songModel.Duration
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    }
+    else
+    {
+        <div>No albums!</div>
+    }
+    @Html.ActionLink("Back to list", "Index")
+</div>
