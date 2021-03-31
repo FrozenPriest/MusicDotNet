@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using RazorWebApplication.Models;
@@ -44,6 +46,14 @@ namespace RazorWebApplication.Services
         public async Task DeleteById(int id)
         {
             await this.HttpClient.DeleteAsync("api/v1/song/" + id);
+        }
+
+        public async Task EditSong(SongUpdateModel songModel)
+        {
+            var json = JsonSerializer.Serialize<SongUpdateModel>(songModel);
+            Console.WriteLine(json);
+            var content = new StringContent(json, Encoding.UTF8, "application/json-patch+json");
+            await HttpClient.PatchAsync("api/v1/song/", content);
         }
     }
 }

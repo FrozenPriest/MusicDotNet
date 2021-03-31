@@ -1,0 +1,13 @@
+﻿@model RazorWebApplication.Models.SongModel
+@{
+    ViewBag.Title = $"Edit song";
+    Layout = "_layout";
+}
+
+<h3>Edit song @Model.Name</h3>
+<form method="post">
+    <p>Name: <input type="text" name="name" value="@Model.Name">
+    <p>Duration: <input type="number" name="duration" value="@Model.Duration">
+    <p>Album Id: <input type="number" name="albumId" value="@Model.Album.Id">
+    <p><input type="submit" value="Save">
+</form>

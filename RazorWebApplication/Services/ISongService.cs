@@ -9,5 +9,6 @@ namespace RazorWebApplication.Services
         Task<IEnumerable<SongModel>> GetAll();
         Task<SongModel> GetById(int id);
         Task DeleteById(int id);
+        Task EditSong(SongUpdateModel songModel);
     }
 }
