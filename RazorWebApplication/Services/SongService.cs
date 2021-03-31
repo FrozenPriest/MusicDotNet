@@ -40,5 +40,10 @@ namespace RazorWebApplication.Services
                 new JsonSerializerOptions {PropertyNameCaseInsensitive = true});
             return result;
         }
+
+        public async Task DeleteById(int id)
+        {
+            await this.HttpClient.DeleteAsync("api/v1/song/" + id);
+        }
     }
 }

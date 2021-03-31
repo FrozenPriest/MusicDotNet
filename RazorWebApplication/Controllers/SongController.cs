@@ -23,5 +23,11 @@ namespace RazorWebApplication.Controllers
         {
             return this.View(await this.SongService.GetById(modelId));
         }
+        
+        public async Task<IActionResult> Delete(int modelId)
+        {
+            await this.SongService.DeleteById(modelId);
+            return this.View();
+        }
     }
 }

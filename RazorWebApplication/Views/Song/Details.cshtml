@@ -39,4 +39,6 @@
     </div>
 
     <input action="action" onclick="window.history.go(-1); return false;" type="button" value="Back"/>
+    <button>@Html.ActionLink("Delete this song!", "Delete", "Song", new {modelId = this.Model.Id}, null)</button>
+
 </div>
