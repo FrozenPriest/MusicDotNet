@@ -10,5 +10,7 @@ namespace RazorWebApplication.Services
         Task<SongModel> GetById(int id);
         Task DeleteById(int id);
         Task EditSong(SongUpdateModel songModel);
+        Task AddSong(SongCreateModel songModel);
+
     }
 }

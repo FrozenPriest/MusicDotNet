@@ -45,5 +45,17 @@ namespace RazorWebApplication.Controllers
             await this.SongService.EditSong(new SongUpdateModel{Id=id, Name = name, AlbumId = albumId, Duration = duration});
             return this.View(await this.SongService.GetById(id));
         }
+        
+        [HttpGet]
+        public async Task<IActionResult> AddSong()
+        {
+            return this.View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddSong(int albumId, string name, int duration)
+        {
+            await this.SongService.AddSong(new SongCreateModel{Name = name, AlbumId = albumId, Duration = duration});
+            return this.View();
+        }
     }
 }

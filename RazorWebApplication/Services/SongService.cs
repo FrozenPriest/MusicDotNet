@@ -55,5 +55,13 @@ namespace RazorWebApplication.Services
             var content = new StringContent(json, Encoding.UTF8, "application/json-patch+json");
             await HttpClient.PatchAsync("api/v1/song/", content);
         }
+
+        public async Task AddSong(SongCreateModel songModel)
+        {
+            var json = JsonSerializer.Serialize<SongCreateModel>(songModel);
+            Console.WriteLine(json);
+            var content = new StringContent(json, Encoding.UTF8, "application/json-patch+json");
+            await HttpClient.PutAsync("api/v1/song/", content);
+        }
     }
 }
