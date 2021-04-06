@@ -19,6 +19,6 @@ namespace DataAccess.Entities
         public string ImageUrl { get; set; }
 
 
-        public virtual ICollection<Album> Album { get; set; }
+        public virtual IEnumerable<Album> Album { get; set; }
     }
 }

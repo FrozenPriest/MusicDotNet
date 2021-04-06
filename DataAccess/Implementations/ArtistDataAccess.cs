@@ -36,28 +36,25 @@ namespace DataAccess.Implementations
 
         public async Task<IEnumerable<Artist>> GetAsync()
         {
-            var result =
+           return 
                 Mapper.Map<IEnumerable<Artist>>(await Context.Artist
-                    .Select(x =>
-                        new Artist
-                        {
-                            Id = x.Id, Name = x.Name, ImageUrl = x.ImageUrl,
-                            Album = x.Album.Select(album =>
-                                new Album
-                                {
-                                    Id = album.Id,
-                                    Name = album.Name,
-                                    ImageUrl = album.ImageUrl,
-                                    Song = album.Song.Select(song =>
-                                        new Song
-                                            {Id = song.Id, Name = song.Name, Duration = song.Duration}
-                                    )
-                                }).ToList()
-                        })
+                .Select(x =>
+                    new Artist
+                    {
+                        Id = x.Id, Name = x.Name, ImageUrl = x.ImageUrl,
+                        Album = x.Album.Select(album =>
+                            new Album
+                            {
+                                Id = album.Id, 
+                                Name = album.Name, 
+                                ImageUrl = album.ImageUrl,
+                                Song = album.Song.Select(song =>
+                                    new Song
+                                        {Id = song.Id, Name = song.Name, Duration = song.Duration}
+                                )
+                            })
+                    })
                     .ToListAsync());
-            var enumerable = result.ToList();
-            // enumerable.SelectMany(artist => artist.Album).ForAll(album => album.Artist = null);
-            return enumerable;
         }
 
         public async Task<Artist> InsertAsync(ArtistUpdateModel artist)

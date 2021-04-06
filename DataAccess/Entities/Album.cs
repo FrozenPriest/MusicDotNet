@@ -22,6 +22,6 @@ namespace DataAccess.Entities
 
         public virtual Artist Artist { get; set; }
 
-        public virtual ICollection<Song> Song { get; set; }
+        public virtual IEnumerable<Song> Song { get; set; }
     }
 }

@@ -9,6 +9,6 @@ namespace Domain
         public string Name { get; set; }
         public string ImageUrl { get; set; }
         
-        public ICollection<Album> Album { get; set; }
+        public IEnumerable<Album> Album { get; set; }
     }
 }

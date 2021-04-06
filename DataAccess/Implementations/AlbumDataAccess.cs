@@ -43,7 +43,6 @@ namespace DataAccess.Implementations
         public async Task<IEnumerable<Album>> GetAsync()
         {
             var result = Mapper.Map<IEnumerable<Album>>(await Context.Album
-                .Include(x => x.Song)
                 .Select(x => new Album
                 {
                     Id = x.Id, Name = x.Name, ImageUrl = x.ImageUrl,
