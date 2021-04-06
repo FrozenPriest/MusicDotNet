@@ -73,7 +73,6 @@ namespace WebApi
                     b =>
                 {
                     b.MigrationsAssembly("WebApi");
-                   // b.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
                 }
             ));
 

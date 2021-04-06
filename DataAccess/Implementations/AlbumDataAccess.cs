@@ -42,7 +42,7 @@ namespace DataAccess.Implementations
 
         public async Task<IEnumerable<Album>> GetAsync()
         {
-            var result = Mapper.Map<IEnumerable<Album>>(await Context.Album
+            return Mapper.Map<IEnumerable<Album>>(await Context.Album
                 .Select(x => new Album
                 {
                     Id = x.Id, Name = x.Name, ImageUrl = x.ImageUrl,
@@ -51,9 +51,6 @@ namespace DataAccess.Implementations
                     Song = x.Song.Select(song => new Song {Id = song.Id, Name = song.Name, Duration = song.Duration})
                 })
                 .ToListAsync());
-            var enumerable = result.ToList();
-            //enumerable.ForAll(x => x.Artist.Album = null);
-            return enumerable;
         }
 
         public async Task<Album> InsertAsync(AlbumUpdateModel album)

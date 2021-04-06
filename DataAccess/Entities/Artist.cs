@@ -7,11 +7,6 @@ namespace DataAccess.Entities
 {
     public class Artist
     {
-        public Artist()
-        {
-            //Album = new HashSet<Album>();
-        }
-
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
