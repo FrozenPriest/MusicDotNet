@@ -38,12 +38,25 @@ namespace DataAccess.Implementations
         {
             var result =
                 Mapper.Map<IEnumerable<Artist>>(await Context.Artist
-                    .Include(x => x.Album)
-                    .ThenInclude(x => x.Song)
+                    .Select(x =>
+                        new Artist
+                        {
+                            Id = x.Id, Name = x.Name, ImageUrl = x.ImageUrl,
+                            Album = x.Album.Select(album =>
+                                new Album
+                                {
+                                    Id = album.Id,
+                                    Name = album.Name,
+                                    ImageUrl = album.ImageUrl,
+                                    Song = album.Song.Select(song =>
+                                        new Song
+                                            {Id = song.Id, Name = song.Name, Duration = song.Duration}
+                                    )
+                                }).ToList()
+                        })
                     .ToListAsync());
-
             var enumerable = result.ToList();
-            enumerable.SelectMany(artist => artist.Album).ForAll(album => album.Artist = null);
+            // enumerable.SelectMany(artist => artist.Album).ForAll(album => album.Artist = null);
             return enumerable;
         }
 
@@ -71,7 +84,23 @@ namespace DataAccess.Implementations
                 throw new ArgumentNullException(nameof(artist));
             }
 
-            return await Context.Artist.Include(x => x.Album)
+            return await Context.Artist
+                .Select(x =>
+                    new Artist
+                    {
+                        Id = x.Id, Name = x.Name, ImageUrl = x.ImageUrl,
+                        Album = x.Album.Select(album =>
+                            new Album
+                            {
+                                Id = album.Id, 
+                                Name = album.Name, 
+                                ImageUrl = album.ImageUrl,
+                                Song = album.Song.Select(song =>
+                                    new Song
+                                        {Id = song.Id, Name = song.Name, Duration = song.Duration}
+                                )
+                            }).ToList()
+                    })
                 .FirstOrDefaultAsync(x => x.Id == artist.Id);
         }
     }

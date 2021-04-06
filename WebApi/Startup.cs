@@ -73,7 +73,7 @@ namespace WebApi
                     b =>
                 {
                     b.MigrationsAssembly("WebApi");
-                    b.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                   // b.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
                 }
             ));
 
@@ -103,7 +103,7 @@ namespace WebApi
             //json
             services.AddControllers().AddNewtonsoftJson(options =>
                 {
-                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    //options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                     options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 }
             );

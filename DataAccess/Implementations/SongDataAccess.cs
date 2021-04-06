@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess.Context;
@@ -33,9 +34,17 @@ namespace DataAccess.Implementations
 
         public async Task<IEnumerable<Song>> GetAsync()
         {
-            var result = await Context.Song.IgnoreAutoIncludes()
-                .Include(x => x.Album)
-                .ThenInclude(x => x.Artist)
+            var result = await Context.Song
+                .Select(x => new Song
+                {
+                    Id = x.Id, Name = x.Name, Duration = x.Duration,
+                    Album = new Album
+                    {
+                        Id = x.Album.Id, Name = x.Album.Name, ImageUrl = x.Album.ImageUrl,
+                        Artist = new Artist
+                            {Id = x.Album.Artist.Id, Name = x.Album.Artist.Name, ImageUrl = x.Album.Artist.ImageUrl}
+                    }
+                })
                 .ToListAsync();
             return Mapper.Map<IEnumerable<Song>>(result);
         }
@@ -53,8 +62,22 @@ namespace DataAccess.Implementations
                 throw new ArgumentNullException(nameof(song));
             }
 
-            return await Context.Song.IgnoreAutoIncludes().Include(x => x.Album).ThenInclude(x => x.Artist)
+            return await Context.Song
+                .Select(x => new Song
+                {
+                    Id = x.Id, Name = x.Name, Duration = x.Duration,
+                    Album = new Album
+                    {
+                        Id = x.Album.Id, Name = x.Album.Name, ImageUrl = x.Album.ImageUrl,
+                        Artist = new Artist
+                            {Id = x.Album.Artist.Id, Name = x.Album.Artist.Name, ImageUrl = x.Album.Artist.ImageUrl}
+                    }
+                })
                 .FirstOrDefaultAsync(x => x.Id == song.Id);
+            // return await Context.Song.IgnoreAutoIncludes()
+            //     .Include(x => x.Album)
+            //     .ThenInclude(x => x.Artist)
+            //     .FirstOrDefaultAsync(x => x.Id == song.Id);
         }
 
 
@@ -69,7 +92,8 @@ namespace DataAccess.Implementations
 
         public async Task DeleteAsync(ISongIdentity id)
         {
-            var song = await Context.Song.Include(x => x.Album)
+            var song = await Context.Song
+                .Include(x => x.Album)
                 .FirstOrDefaultAsync(x => x.Id == id.Id);
             Context.Song.Remove(song);
             await Context.SaveChangesAsync();

@@ -28,8 +28,13 @@ namespace DataAccess.Implementations
         public async Task<Album> GetByAsync(IAlbumContainer album)
         {
             var result = Mapper.Map<Album>(await Context.Album
-                .Include(x => x.Song)
-                .Include(x => x.Artist)
+                .Select(x => new Album
+                {
+                    Id = x.Id, Name = x.Name, ImageUrl = x.ImageUrl,
+                    Artist = new Artist
+                        {Id = x.Artist.Id, Name = x.Artist.Name, ImageUrl = x.Artist.ImageUrl},
+                    Song = x.Song.Select(song => new Song {Id = song.Id, Name = song.Name, Duration = song.Duration})
+                })
                 .FirstOrDefaultAsync(x => x.Id == album.AlbumId));
             result.Artist.Album = null;
             return result;
@@ -39,10 +44,16 @@ namespace DataAccess.Implementations
         {
             var result = Mapper.Map<IEnumerable<Album>>(await Context.Album
                 .Include(x => x.Song)
-                .Include(x => x.Artist)
+                .Select(x => new Album
+                {
+                    Id = x.Id, Name = x.Name, ImageUrl = x.ImageUrl,
+                    Artist = new Artist
+                        {Id = x.Artist.Id, Name = x.Artist.Name, ImageUrl = x.Artist.ImageUrl},
+                    Song = x.Song.Select(song => new Song {Id = song.Id, Name = song.Name, Duration = song.Duration})
+                })
                 .ToListAsync());
             var enumerable = result.ToList();
-            enumerable.ForAll(x => x.Artist.Album = null);
+            //enumerable.ForAll(x => x.Artist.Album = null);
             return enumerable;
         }
 
@@ -71,7 +82,8 @@ namespace DataAccess.Implementations
                 throw new ArgumentNullException(nameof(album));
             }
 
-            return await Context.Album.Include(x => x.Artist)
+            return await Context.Album
+                .Include(x => x.Artist)
                 .FirstOrDefaultAsync(x => x.Id == album.Id);
         }
     }
