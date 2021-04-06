@@ -10,6 +10,9 @@
 <div class="container">
     <div class="row">
         <div class="col">
+            <b>ID</b>
+        </div>
+        <div class="col">
             <b>Name</b>
         </div>
         <div class="col">
@@ -22,6 +25,9 @@
     @foreach (var albumModel in this.Model)
     {
         <div class="row">
+            <div class="col">
+                @albumModel.Id
+            </div>
             <div class="col">
                 @Html.ActionLink(albumModel.Name, "Details", new {modelId = albumModel.Id}, null)
             </div>
